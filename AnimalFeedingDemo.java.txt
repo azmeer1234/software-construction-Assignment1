@@ -1,0 +1,52 @@
+package com.animals;
+
+interface Edible {
+    int nutritionValue();
+}
+
+class Animal {
+    private int energyLevel = 0;
+
+    public void consume(Edible item) {
+        energyLevel += item.nutritionValue();
+        showEnergy();
+    }
+
+    private void showEnergy() {
+        System.out.println("Animal's current energy: " + energyLevel);
+    }
+}
+
+class Meat implements Edible {
+    @Override
+    public int nutritionValue() {
+        return 45;
+    }
+
+    public String describeTexture() {
+        return "Juicy and tender";
+    }
+
+    public boolean isFresh() {
+        return true;
+    }
+}
+
+class Seafood implements Edible {
+    @Override
+    public int nutritionValue() {
+        return 70;
+    }
+}
+
+public class AnimalFeedingDemo {
+    public static void main(String[] args) {
+        Animal felix = new Animal();
+
+        Edible steak = new Meat();
+        Edible salmon = new Seafood();
+
+        felix.consume(steak);   // Feeding steak
+        felix.consume(salmon);  // Feeding salmon
+    }
+}
